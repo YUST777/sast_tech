@@ -45,12 +45,12 @@ const defaultSections = [
         ],
     },
     {
-        title: "Resources",
+        title: "Help Center",
         links: [
-            { name: "Security Blog", href: "#" },
-            { name: "Whitepapers", href: "#" },
-            { name: "Compliance Guides", href: "#" },
-            { name: "Vulnerability Db", href: "#" },
+            { name: "Support Home", href: "/help-center" },
+            { name: "Contact Support", href: "/help-center" },
+            { name: "Community", href: "/help-center" },
+            { name: "Sast Pros", href: "/help-center" },
         ],
     },
 ];
