@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { Footer7 } from "@/components/ui/footer-7"
 import { HeroSection } from "@/components/ui/hero-section-1" // Reusing navbar from here if needed, or just page content
 
 export default function HelpCenterPage() {
@@ -64,7 +63,6 @@ export default function HelpCenterPage() {
                     </Link>
                 </div>
             </div>
-            <Footer7 />
         </main>
     )
 }
