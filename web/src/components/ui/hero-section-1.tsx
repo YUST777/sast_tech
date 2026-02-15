@@ -94,7 +94,7 @@ export function HeroSection() {
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="#link">
+                                            <Link href="/waitlist">
                                                 <span className="text-nowrap">Start Building</span>
                                             </Link>
                                         </Button>
@@ -105,8 +105,8 @@ export function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link href="#link">
-                                            <span className="text-nowrap">Request a demo</span>
+                                        <Link href="/waitlist">
+                                            <span className="text-nowrap">Join Waitlist</span>
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>
@@ -331,7 +331,7 @@ const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="#">
+                                    <Link href="/waitlist">
                                         <span>Sign Up</span>
                                     </Link>
                                 </Button>
@@ -339,7 +339,7 @@ const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link href="#">
+                                    <Link href="/waitlist">
                                         <span>Get Started</span>
                                     </Link>
                                 </Button>
