@@ -1,3 +1,7 @@
+import { Button } from '@/components/ui/button'
+import { Check } from 'lucide-react'
+import Link from 'next/link'
+
 export default function Pricing() {
     return (
         <section id="pricing" className="py-16 md:py-32">
