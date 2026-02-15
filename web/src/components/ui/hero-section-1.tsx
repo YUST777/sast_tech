@@ -348,7 +348,9 @@ const HeroHeader = () => {
                         </div>
                     </div>
 
-            </nav>
+                </div>
+            </div>
+        </nav>
         </header >
     )
 }
