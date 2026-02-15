@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { ArrowRight, ChevronRight, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
+import BentoGrid from '@/components/ui/bento'
 import { cn } from '@/lib/utils'
 
 const transitionVariants = {
@@ -237,6 +238,9 @@ export function HeroSection() {
                             </div>
                         </div>
                     </div>
+                </section>
+                <section className="bg-background pb-16 pt-16 md:pb-32">
+                    <BentoGrid />
                 </section>
             </main>
         </>
