@@ -95,7 +95,7 @@ export function HeroSection() {
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
                                             <Link href="/waitlist">
-                                                <span className="text-nowrap">Start Building</span>
+                                                <span className="text-nowrap">Join Waitlist</span>
                                             </Link>
                                         </Button>
                                     </div>
@@ -105,8 +105,8 @@ export function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link href="/waitlist">
-                                            <span className="text-nowrap">Join Waitlist</span>
+                                        <Link href="#pricing">
+                                            <span className="text-nowrap">View Pricing</span>
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>
