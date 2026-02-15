@@ -24,7 +24,7 @@ export default function Pricing() {
                                 asChild
                                 variant="outline"
                                 className="w-full">
-                                <Link href="">Start Scanning</Link>
+                                <Link href="/waitlist">Start Scanning</Link>
                             </Button>
 
                             <hr className="border-dashed" />
@@ -54,7 +54,7 @@ export default function Pricing() {
                                 <Button
                                     asChild
                                     className="w-full">
-                                    <Link href="">Upgrade to Pro</Link>
+                                    <Link href="/waitlist">Upgrade to Pro</Link>
                                 </Button>
                             </div>
 

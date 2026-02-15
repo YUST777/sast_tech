@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ChevronRight, Menu, X } from 'lucide-react'
+import { ArrowRight, ChevronRight, Menu, Star, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import BentoGrid from '@/components/ui/bento'
@@ -47,9 +47,9 @@ export function HeroSection() {
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <AnimatedGroup variants={transitionVariants}>
                                     <Link
-                                        href="#link"
+                                        href="/waitlist"
                                         className="hover:bg-background dark:hover:border-t-blue-500/20 bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-                                        <span className="text-foreground text-sm">Introducing Support for AI Models</span>
+                                        <span className="text-foreground text-sm">Now in Early Access — Join the Waitlist</span>
                                         <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
 
                                         <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
@@ -94,8 +94,8 @@ export function HeroSection() {
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="#link">
-                                                <span className="text-nowrap">Start Building</span>
+                                            <Link href="/waitlist">
+                                                <span className="text-nowrap">Join Waitlist</span>
                                             </Link>
                                         </Button>
                                     </div>
@@ -105,8 +105,8 @@ export function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link href="#link">
-                                            <span className="text-nowrap">Request a demo</span>
+                                        <Link href="#pricing">
+                                            <span className="text-nowrap">View Pricing</span>
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>
@@ -156,7 +156,7 @@ export function HeroSection() {
                             <Link
                                 href="/"
                                 className="block text-sm duration-150 hover:opacity-75">
-                                <span> Meet Our Customers</span>
+                                <span> Trusted by Teams at</span>
 
                                 <ChevronRight className="ml-1 inline-block size-3" />
                             </Link>
@@ -239,7 +239,7 @@ export function HeroSection() {
                         </div>
                     </div>
                 </section>
-                <section className="bg-background pb-16 pt-16 md:pb-32">
+                <section id="features" className="bg-background pb-16 pt-16 md:pb-32">
                     <BentoGrid />
                 </section>
             </main>
@@ -248,10 +248,10 @@ export function HeroSection() {
 }
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
+    { name: 'Features', href: '#features' },
     { name: 'Pricing', href: '#pricing' },
-    { name: 'About', href: '#link' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Waitlist', href: '/waitlist' },
 ]
 
 const HeroHeader = () => {
@@ -317,29 +317,30 @@ const HeroHeader = () => {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:items-center sm:gap-3 sm:space-y-0 md:w-fit">
+                                <GitHubStars />
                                 <Button
                                     asChild
                                     variant="outline"
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="#">
-                                        <span>Login</span>
+                                    <Link href="/waitlist">
+                                        <span>Join Waitlist</span>
                                     </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="#">
-                                        <span>Sign Up</span>
+                                    <Link href="#pricing">
+                                        <span>View Pricing</span>
                                     </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link href="#">
+                                    <Link href="/waitlist">
                                         <span>Get Started</span>
                                     </Link>
                                 </Button>
@@ -349,6 +350,38 @@ const HeroHeader = () => {
                 </div>
             </nav>
         </header>
+    )
+}
+
+const GitHubStars = () => {
+    const [stars, setStars] = React.useState<number | null>(null)
+
+    React.useEffect(() => {
+        fetch('https://api.github.com/repos/YUST777/sast_tech')
+            .then((res) => res.json())
+            .then((data) => {
+                if (typeof data.stargazers_count === 'number') {
+                    setStars(data.stargazers_count)
+                }
+            })
+            .catch(() => {})
+    }, [])
+
+    return (
+        <Link
+            href="https://github.com/YUST777/sast_tech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white">
+            <Star className="size-3.5" />
+            <span>Star</span>
+            {stars !== null && (
+                <>
+                    <span className="h-3.5 w-px bg-white/20" />
+                    <span className="text-xs font-medium">{stars}</span>
+                </>
+            )}
+        </Link>
     )
 }
 
