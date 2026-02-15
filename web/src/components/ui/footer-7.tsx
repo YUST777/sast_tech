@@ -31,14 +31,18 @@ interface Footer7Props {
 
 const defaultSections = [
     {
-        title: "Services",
-        href: "/services",
-        links: [],
-    },
-    {
         title: "Company",
         href: "/company",
         links: [],
+    },
+    {
+        title: "Services",
+        href: "/services",
+        links: [
+            { name: "AI Penetration Testing", href: "/services#ai-pentest" },
+            { name: "Vulnerability Assessment", href: "/services#vulnerability-assessment" },
+            { name: "Threat Intelligence", href: "/services#threat-intelligence" },
+        ],
     },
     {
         title: "Help Center",
