@@ -10,6 +10,7 @@ interface Footer7Props {
     };
     sections?: Array<{
         title: string;
+        href?: string;
         links: Array<{ name: string; href: string }>;
     }>;
     description?: string;
@@ -46,12 +47,8 @@ const defaultSections = [
     },
     {
         title: "Help Center",
-        links: [
-            { name: "Support Home", href: "/help-center" },
-            { name: "Contact Support", href: "/help-center" },
-            { name: "Community", href: "/help-center" },
-            { name: "Sast Pros", href: "/help-center" },
-        ],
+        href: "/help-center",
+        links: [],
     },
 ];
 
@@ -110,7 +107,13 @@ export const Footer7 = ({
                     <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-10">
                         {sections.map((section, sectionIdx) => (
                             <div key={sectionIdx}>
-                                <h3 className="mb-4 font-bold text-base">{section.title}</h3>
+                                {section.href ? (
+                                    <a href={section.href} className="group flex items-center mb-4">
+                                        <h3 className="font-bold text-base group-hover:text-primary transition-colors">{section.title}</h3>
+                                    </a>
+                                ) : (
+                                    <h3 className="mb-4 font-bold text-base">{section.title}</h3>
+                                )}
                                 <ul className="space-y-3 text-sm text-muted-foreground">
                                     {section.links.map((link, linkIdx) => (
                                         <li
