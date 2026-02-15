@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaTiktok } from "react-icons/fa";
+import { ChevronDown } from "lucide-react";
 
 interface Footer7Props {
     logo?: {
@@ -39,8 +42,12 @@ const defaultSections = [
     },
     {
         title: "Help Center",
-        href: "/help-center",
-        links: [],
+        links: [
+            { name: "Contact Support", href: "/help-center#contact" },
+            { name: "Help Center", href: "/help-center" },
+            { name: "Sast Community", href: "/help-center#community" },
+            { name: "Sast Tech Pros", href: "/help-center#tech-pros" },
+        ],
     },
 ];
 
@@ -71,6 +78,8 @@ export const Footer7 = ({
     copyright = "© 2026 Sast. All rights reserved.",
     legalLinks = defaultLegalLinks,
 }: Footer7Props) => {
+    const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+
     return (
         <section className="pt-16 pb-8 bg-background border-t">
             <div className="container mx-auto px-4">
@@ -79,7 +88,6 @@ export const Footer7 = ({
                         {/* Logo */}
                         <div className="flex items-center gap-2 lg:justify-start">
                             <a href={logo.url} className="flex items-center gap-2">
-                                {/* Placeholder for logo icon if src is not replaced yet, or keep text dominant */}
                                 <h2 className="text-2xl font-bold tracking-tight">{logo.title}</h2>
                             </a>
                         </div>
@@ -99,23 +107,61 @@ export const Footer7 = ({
                     <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-10">
                         {sections.map((section, sectionIdx) => (
                             <div key={sectionIdx}>
-                                {section.href ? (
+                                {section.links.length > 0 ? (
+                                    <div
+                                        className="relative"
+                                        onMouseEnter={() => setHoveredSection(section.title)}
+                                        onMouseLeave={() => setHoveredSection(null)}
+                                    >
+                                        <div className="flex items-center gap-1 mb-4 cursor-pointer group">
+                                            <h3 className="font-bold text-base group-hover:text-primary transition-colors">
+                                                {section.title}
+                                            </h3>
+                                            <ChevronDown
+                                                className={`size-4 text-muted-foreground transition-transform duration-200 ${
+                                                    hoveredSection === section.title ? "rotate-180" : ""
+                                                }`}
+                                            />
+                                        </div>
+                                        <div
+                                            className={`absolute top-full left-0 mt-0 min-w-[200px] z-50 rounded-lg border bg-background shadow-lg max-h-48 overflow-y-auto transition-all duration-200 ${
+                                                hoveredSection === section.title
+                                                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                                                    : "opacity-0 -translate-y-1 pointer-events-none"
+                                            }`}
+                                        >
+                                            <div className="py-1">
+                                                {section.links.map((link, linkIdx) => (
+                                                    <a
+                                                        key={linkIdx}
+                                                        href={link.href}
+                                                        className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-200"
+                                                    >
+                                                        {link.name}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : section.href ? (
                                     <a href={section.href} className="group flex items-center mb-4">
                                         <h3 className="font-bold text-base group-hover:text-primary transition-colors">{section.title}</h3>
                                     </a>
                                 ) : (
                                     <h3 className="mb-4 font-bold text-base">{section.title}</h3>
                                 )}
-                                <ul className="space-y-3 text-sm text-muted-foreground">
-                                    {section.links.map((link, linkIdx) => (
-                                        <li
-                                            key={linkIdx}
-                                            className="font-medium hover:text-primary transition-colors"
-                                        >
-                                            <a href={link.href}>{link.name}</a>
-                                        </li>
-                                    ))}
-                                </ul>
+                                {section.links.length === 0 && (
+                                    <ul className="space-y-3 text-sm text-muted-foreground">
+                                        {section.links.map((link, linkIdx) => (
+                                            <li
+                                                key={linkIdx}
+                                                className="font-medium hover:text-primary transition-colors"
+                                            >
+                                                <a href={link.href}>{link.name}</a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
                         ))}
                     </div>

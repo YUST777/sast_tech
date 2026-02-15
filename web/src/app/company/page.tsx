@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { Footer7 } from "@/components/ui/footer-7"
-import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaTiktok } from "react-icons/fa"
+import { Button } from "@/components/ui/button"
 
 export default function CompanyPage() {
     const socialLinks = [
@@ -13,7 +14,19 @@ export default function CompanyPage() {
     ]
 
     return (
-        <main className="min-h-screen bg-background text-foreground">
+        <main className="min-h-screen bg-background text-foreground relative">
+            {/* Logo */}
+            <Link href="/" className="absolute z-50 top-8 left-8 flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <Image
+                    src="/apple-touch-icon.png"
+                    alt="Sast Logo"
+                    width={32}
+                    height={32}
+                    className="size-8"
+                />
+                <span className="text-xl font-bold tracking-tight">Sast</span>
+            </Link>
+
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-20 md:py-32">
                 <div className="mx-auto max-w-4xl text-center">
@@ -52,7 +65,20 @@ export default function CompanyPage() {
                     </div>
                 </div>
             </div>
-            <Footer7 />
+
+            {/* Return Button */}
+            <div className="fixed bottom-8 left-8 z-50">
+                <Button
+                    asChild
+                    variant="outline"
+                    className="gap-2"
+                >
+                    <Link href="/">
+                        <ArrowLeft className="size-4" />
+                        Return Home
+                    </Link>
+                </Button>
+            </div>
         </main>
     )
 }
