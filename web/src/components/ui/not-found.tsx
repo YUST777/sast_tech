@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
-
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -45,35 +46,38 @@ const ICONS = {
     ),
 };
 
+const Logo = () => (
+    <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Image
+            src="/apple-touch-icon.png"
+            alt="Sast Logo"
+            width={32}
+            height={32}
+            className="size-8"
+        />
+        <span className="text-xl font-bold tracking-tight">Sast</span>
+    </Link>
+)
+
 export function NotFound() {
     const isMobile = useIsMobile()
     return (
-        <div className="h-screen w-full flex items-center justify-center py-16 px-4 md:py-24 md:px-20">
+        <div className="h-screen w-full flex items-center justify-center py-16 px-4 md:py-24 md:px-20 relative">
+            <Logo />
             <div className="absolute hidden md:flex inset-0 items-center justify-center text-secondary py-24 px-20">
                 {ICONS.notFound()}
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-8 md:gap-12">
                 <div className="flex flex-col items-center justify-center gap-4 md:gap-6">
-                    <h1 className="text-center text-4xl md:text-6xl font-semibold">
+                    <h1 className="text-center text-2xl md:text-4xl font-semibold">
                         We lost this page
                     </h1>
                     <p className="text-center text-lg md:text-xl">
                         The page you are looking for doesn't exist or has been moved.{" "}
                     </p>
                 </div>
-                <div className="flex gap-4 flex-col md:flex-row w-full items-center justify-center">
-                    <div className="relative w-full md:w-fit">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
-                        <Input
-                            className="pl-8 bg-background w-full md:w-fit"
-                            placeholder="Search our site"
-                        />
-                    </div>
-                    <Button className="w-full md:w-fit" variant="outline">
-                        Search
-                    </Button>
-                </div>
+
                 <div className="flex gap-3 flex-col md:flex-row w-full items-center justify-center ">
                     <Button
                         className="w-full md:w-fit"
@@ -81,12 +85,6 @@ export function NotFound() {
                         variant="outline"
                     >
                         <ArrowLeft className='size-4' /> Go back
-                    </Button>
-                    <Button
-                        className="w-full md:w-fit"
-                        size={isMobile ? "default" : "lg"}
-                    >
-                        Go Home
                     </Button>
                 </div>
             </div>
