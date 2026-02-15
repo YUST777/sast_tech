@@ -29,21 +29,13 @@ interface Footer7Props {
 const defaultSections = [
     {
         title: "Services",
-        links: [
-            { name: "Network Penetration Testing", href: "#" },
-            { name: "Web Application Security", href: "#" },
-            { name: "Mobile App Security", href: "#" },
-            { name: "Cloud Security Assessment", href: "#" },
-        ],
+        href: "/services",
+        links: [],
     },
     {
         title: "Company",
-        links: [
-            { name: "About VibeSec", href: "#" },
-            { name: "Our Team", href: "#" },
-            { name: "Careers", href: "#" },
-            { name: "Contact Us", href: "#" },
-        ],
+        href: "/company",
+        links: [],
     },
     {
         title: "Help Center",
@@ -70,13 +62,13 @@ export const Footer7 = ({
     logo = {
         url: "/",
         src: "https://www.shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
-        alt: "VibeSec Logo",
-        title: "VibeSec",
+        alt: "Sast Logo",
+        title: "Sast",
     },
     sections = defaultSections,
     description = "Securing your digital frontier with advanced penetration testing and comprehensive vulnerability assessments.",
     socialLinks = defaultSocialLinks,
-    copyright = "© 2026 VibeSec. All rights reserved.",
+    copyright = "© 2026 Sast. All rights reserved.",
     legalLinks = defaultLegalLinks,
 }: Footer7Props) => {
     return (
