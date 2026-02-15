@@ -24,7 +24,7 @@ export default function Pricing() {
                                 asChild
                                 variant="outline"
                                 className="w-full">
-                                <Link href="">Start Scanning</Link>
+                                <Link href="/waitlist">Start Scanning</Link>
                             </Button>
 
                             <hr className="border-dashed" />
@@ -42,36 +42,43 @@ export default function Pricing() {
                         </div>
                     </div>
 
-                    <div className="dark:bg-muted rounded-(--radius) border p-6 shadow-lg shadow-gray-950/5 md:col-span-3 lg:p-10 dark:[--color-muted:var(--color-zinc-900)]">
-                        <div className="grid gap-6 sm:grid-cols-2">
-                            <div className="space-y-4">
-                                <div>
-                                    <h2 className="font-medium">Pro Pentester</h2>
-                                    <span className="my-3 block text-2xl font-semibold">$49 / mo</span>
-                                    <p className="text-muted-foreground text-sm">For professional security teams</p>
+                    <div className="relative dark:bg-muted rounded-(--radius) border shadow-lg shadow-gray-950/5 md:col-span-3 dark:[--color-muted:var(--color-zinc-900)] overflow-hidden">
+                        <div className="p-6 lg:p-10 blur-[6px] select-none pointer-events-none">
+                            <div className="grid gap-6 sm:grid-cols-2">
+                                <div className="space-y-4">
+                                    <div>
+                                        <h2 className="font-medium">Pro Pentester</h2>
+                                        <span className="my-3 block text-2xl font-semibold">$49 / mo</span>
+                                        <p className="text-muted-foreground text-sm">For professional security teams</p>
+                                    </div>
+
+                                    <Button
+                                        asChild
+                                        className="w-full">
+                                        <Link href="/waitlist">Upgrade to Pro</Link>
+                                    </Button>
                                 </div>
 
-                                <Button
-                                    asChild
-                                    className="w-full">
-                                    <Link href="">Upgrade to Pro</Link>
-                                </Button>
-                            </div>
+                                <div>
+                                    <div className="text-sm font-medium">Everything in Community plus :</div>
 
-                            <div>
-                                <div className="text-sm font-medium">Everything in Community plus :</div>
-
-                                <ul className="mt-4 list-outside space-y-3 text-sm">
-                                    {['AI-Driven Exploit Verification', 'API & Cloud Security Testing', 'Automated Compliance Reports (PDF/CSV)', 'CI/CD Pipeline Integration', 'Zero-False-Positive Guarantee', 'Priority Email Support', 'Unlimited Concurrent Scans', 'JIRA/Slack Integration'].map((item, index) => (
-                                        <li
-                                            key={index}
-                                            className="flex items-center gap-2">
-                                            <Check className="size-3" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
+                                    <ul className="mt-4 list-outside space-y-3 text-sm">
+                                        {['AI-Driven Exploit Verification', 'API & Cloud Security Testing', 'Automated Compliance Reports (PDF/CSV)', 'CI/CD Pipeline Integration', 'Zero-False-Positive Guarantee', 'Priority Email Support', 'Unlimited Concurrent Scans', 'JIRA/Slack Integration'].map((item, index) => (
+                                            <li
+                                                key={index}
+                                                className="flex items-center gap-2">
+                                                <Check className="size-3" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
+                        </div>
+
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                            <span className="text-6xl font-bold tracking-tight text-white md:text-7xl">100K</span>
+                            <span className="mt-2 text-sm text-white/60">waitlist goal to unlock</span>
                         </div>
                     </div>
                 </div>

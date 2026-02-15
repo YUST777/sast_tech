@@ -7,7 +7,7 @@ import {
 
 export function Faq() {
     return (
-        <section className="container mx-auto py-24 sm:py-32">
+        <section id="faq" className="container mx-auto py-24 sm:py-32">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                 Frequently Asked Questions
             </h2>
