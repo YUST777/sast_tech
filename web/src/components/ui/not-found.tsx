@@ -47,7 +47,7 @@ const ICONS = {
 };
 
 const Logo = () => (
-    <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 hover:opacity-80 transition-opacity">
+    <Link href="/" className="absolute z-50 top-8 left-8 flex items-center gap-2 hover:opacity-80 transition-opacity">
         <Image
             src="/apple-touch-icon.png"
             alt="Sast Logo"
@@ -80,11 +80,14 @@ export function NotFound() {
 
                 <div className="flex gap-3 flex-col md:flex-row w-full items-center justify-center ">
                     <Button
-                        className="w-full md:w-fit"
+                        asChild
+                        className="w-full md:w-fit bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/30 dark:text-blue-400 dark:hover:bg-blue-950/50 dark:border-blue-800"
                         size={isMobile ? "default" : "lg"}
                         variant="outline"
                     >
-                        <ArrowLeft className='size-4' /> Go back
+                        <Link href="/">
+                            Return Home
+                        </Link>
                     </Button>
                 </div>
             </div>
