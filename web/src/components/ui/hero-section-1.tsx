@@ -335,19 +335,18 @@ const HeroHeader = () => {
                                     <Link href="#pricing">
                                         <span>View Pricing</span>
                                     </Link>
-                                </Link>
-                            </Button>
-                            <Button
-                                asChild
-                                size="sm"
-                                className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                <Link href="/waitlist">
-                                    <span>Get Started</span>
-                                </Link>
-                            </Button>
+                                </Button>
+                                <Button
+                                    asChild
+                                    size="sm"
+                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
+                                    <Link href="/waitlist">
+                                        <span>Get Started</span>
+                                    </Link>
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
             </nav>
         </header >
