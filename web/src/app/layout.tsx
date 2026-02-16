@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, Inter, Instrument_Serif } from "next/font/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,11 +31,30 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "sast — Autonomous AI Cybersecurity Agent",
+    default: "sast — Autonomous AI Pentesting & Vulnerability Scanner",
     template: "%s | sast",
   },
   description:
-    "An autonomous AI agent that scans, detects, and fixes security vulnerabilities in your codebase — continuously.",
+    "sast is an autonomous AI cybersecurity agent that continuously scans, detects, and fixes security vulnerabilities in your codebase. OWASP Top 10 coverage, CI/CD integration, zero false positives.",
+  keywords: [
+    "AI pentesting",
+    "autonomous security scanner",
+    "vulnerability detection",
+    "OWASP Top 10",
+    "application security",
+    "SAST",
+    "DAST",
+    "penetration testing",
+    "cybersecurity AI",
+    "code security",
+    "DevSecOps",
+    "CI/CD security",
+    "automated security testing",
+  ],
+  authors: [{ name: "sast", url: "https://sast.tech" }],
+  creator: "sast",
+  publisher: "sast",
+  category: "technology",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
@@ -44,21 +64,26 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "sast — Autonomous AI Cybersecurity Agent",
+    title: "sast — Autonomous AI Pentesting & Vulnerability Scanner",
     description:
-      "An autonomous AI agent that scans, detects, and fixes security vulnerabilities in your codebase — continuously.",
+      "Continuously scan, detect, and fix security vulnerabilities in your codebase with an autonomous AI agent. OWASP Top 10 coverage, zero false positives.",
     url: "https://sast.tech",
     siteName: "sast",
-    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: "sast logo" }],
+    locale: "en_US",
+    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: "sast — Autonomous AI Cybersecurity Agent" }],
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "sast — Autonomous AI Cybersecurity Agent",
+    title: "sast — Autonomous AI Pentesting & Vulnerability Scanner",
     description:
-      "An autonomous AI agent that scans, detects, and fixes security vulnerabilities in your codebase — continuously.",
+      "Continuously scan, detect, and fix security vulnerabilities with an autonomous AI agent. Zero false positives.",
     images: ["/icon-512.png"],
     creator: "@sast_tech",
+    site: "@sast_tech",
+  },
+  alternates: {
+    canonical: "https://sast.tech",
   },
   metadataBase: new URL("https://sast.tech"),
 };
@@ -73,7 +98,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${instrumentSerif.variable} antialiased`}
       >
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

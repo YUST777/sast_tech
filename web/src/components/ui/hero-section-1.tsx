@@ -95,8 +95,8 @@ export function HeroSection() {
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="/waitlist">
-                                                <span className="text-nowrap">Join Waitlist</span>
+                                            <Link href="/download">
+                                                <span className="text-nowrap">Download</span>
                                             </Link>
                                         </Button>
                                     </div>
@@ -189,7 +189,7 @@ const menuItems = [
     { name: 'Features', href: '#features' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'FAQ', href: '#faq' },
-    { name: 'Waitlist', href: '/waitlist' },
+    { name: 'Download', href: '/download' },
 ]
 
 const HeroHeader = () => {
@@ -262,8 +262,8 @@ const HeroHeader = () => {
                                     variant="outline"
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="/waitlist">
-                                        <span>Join Waitlist</span>
+                                    <Link href="/download">
+                                        <span>Download</span>
                                     </Link>
                                 </Button>
                                 <Button
@@ -278,7 +278,7 @@ const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link href="/waitlist">
+                                    <Link href="/download">
                                         <span>Get Started</span>
                                     </Link>
                                 </Button>

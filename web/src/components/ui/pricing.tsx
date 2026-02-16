@@ -3,49 +3,26 @@
 import { Button } from '@/components/ui/button'
 import { Check } from 'lucide-react'
 import Link from 'next/link'
-import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
 export default function Pricing() {
     const sectionRef = useRef(null)
-    const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-    const [hasStarted, setHasStarted] = useState(false)
-
-    // Using 10000 as internal value to allow "decrease by 100" logic if we were stepping, 
-    // but mapping it to 0-100 for display (10000/100 = 100).
-    const count = useMotionValue(10000)
-    const blur = useTransform(count, [10000, 0], [6, 0])
-    const opacity = useTransform(count, [10000, 0], [1, 0])
-    const roundedCount = useTransform(count, (latest) => Math.round(latest / 100))
-
-    useEffect(() => {
-        if (isInView && !hasStarted) {
-            setHasStarted(true)
-
-            const runAnimation = async () => {
-                // Repeat 3 times
-                for (let i = 0; i < 3; i++) {
-                    count.set(10000) // Reset to start
-                    await animate(count, 0, {
-                        duration: 2,
-                        ease: "linear",
-                    })
-                    // Small pause between cycles
-                    if (i < 2) await new Promise(r => setTimeout(r, 200))
-                }
-                // Ensure it stays at 0 (unblurred) after 3rd time
-                count.set(0)
-            }
-
-            runAnimation()
-        }
-    }, [isInView, count, hasStarted])
 
     return (
         <section ref={sectionRef} id="pricing" className="py-16 md:py-32">
+            {/* SVG pixelation filter */}
+            <svg className="absolute size-0" aria-hidden="true">
+                <filter id="pixelate">
+                    <feFlood x="0" y="0" height="2" width="2" />
+                    <feComposite width="4" height="4" />
+                    <feTile result="a" />
+                    <feComposite in="SourceGraphic" in2="a" operator="in" />
+                    <feMorphology operator="dilate" radius="2" />
+                </filter>
+            </svg>
             <div className="mx-auto max-w-5xl px-6">
                 <div className="mx-auto max-w-2xl space-y-6 text-center">
-                    <h1 className="text-center text-4xl font-semibold lg:text-5xl">Autonomous AI Pentesting</h1>
+                    <h2 className="text-center text-4xl font-semibold lg:text-5xl">Autonomous AI Pentesting</h2>
                     <p>Scale your security testing with AI-driven vulnerability detection and automated exploitation validation.</p>
                 </div>
 
@@ -81,8 +58,8 @@ export default function Pricing() {
                     </div>
 
                     <div className="relative dark:bg-muted rounded-(--radius) border shadow-lg shadow-gray-950/5 md:col-span-3 dark:[--color-muted:var(--color-zinc-900)] overflow-hidden">
-                        <motion.div
-                            style={{ filter: useTransform(blur, (v) => `blur(${v}px)`) }}
+                        <div
+                            style={{ filter: 'url(#pixelate)' }}
                             className="p-6 lg:p-10 select-none pointer-events-none"
                         >
                             <div className="grid gap-6 sm:grid-cols-2">
@@ -115,17 +92,7 @@ export default function Pricing() {
                                     </ul>
                                 </div>
                             </div>
-                        </motion.div>
-
-                        <motion.div
-                            style={{ opacity }}
-                            className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 backdrop-blur-[2px]"
-                        >
-                            <span className="flex items-center text-6xl font-bold tracking-tight text-white md:text-7xl">
-                                <motion.span>{roundedCount}</motion.span>K
-                            </span>
-                            <span className="mt-2 text-sm text-white/90 font-medium">waitlist goal to unlock</span>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </div>

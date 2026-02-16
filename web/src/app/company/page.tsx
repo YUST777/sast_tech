@@ -2,6 +2,22 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight, Facebook, Instagram, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: 'About Us',
+    description:
+        'Learn about sast — the team building an autonomous AI cybersecurity agent for continuous vulnerability detection and automated pentesting.',
+    openGraph: {
+        title: 'About sast — AI-Powered Cybersecurity',
+        description:
+            'Securing your digital frontier with advanced AI-driven penetration testing and comprehensive vulnerability assessments.',
+        url: 'https://sast.tech/company',
+    },
+    alternates: {
+        canonical: 'https://sast.tech/company',
+    },
+}
 
 const TikTokIcon = ({ className }: { className?: string }) => (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
