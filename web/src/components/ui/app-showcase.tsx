@@ -355,7 +355,7 @@ export function AppShowcase() {
     }, [visibleLines, terminalLines.length])
 
     return (
-        <div className="bg-[#0c0c0c] aspect-[15/8] w-full rounded-2xl overflow-hidden flex flex-col select-none">
+        <div className="bg-[#0c0c0c] aspect-[3/4] sm:aspect-[15/8] w-full rounded-2xl overflow-hidden flex flex-col select-none">
             {/* Title bar */}
             <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3 shrink-0">
                 <div className="flex items-center gap-3">

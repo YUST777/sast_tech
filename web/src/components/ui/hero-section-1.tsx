@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ChevronRight, Menu, Star, X } from 'lucide-react'
+import { useLenis } from 'lenis/react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { AppShowcase } from '@/components/ui/app-showcase'
@@ -195,6 +196,7 @@ const menuItems = [
 const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
+    const lenis = useLenis()
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -203,6 +205,17 @@ const HeroHeader = () => {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith('#')) {
+            e.preventDefault()
+            setMenuState(false)
+            lenis?.scrollTo(href, { offset: -80 })
+        } else {
+            setMenuState(false)
+        }
+    }
+
     return (
         <header>
             <nav
@@ -233,6 +246,7 @@ const HeroHeader = () => {
                                     <li key={index}>
                                         <Link
                                             href={item.href}
+                                            onClick={(e) => handleAnchorClick(e, item.href)}
                                             className="text-muted-foreground hover:text-accent-foreground block duration-150">
                                             <span>{item.name}</span>
                                         </Link>
@@ -248,6 +262,7 @@ const HeroHeader = () => {
                                         <li key={index}>
                                             <Link
                                                 href={item.href}
+                                                onClick={(e) => handleAnchorClick(e, item.href)}
                                                 className="text-muted-foreground hover:text-accent-foreground block duration-150">
                                                 <span>{item.name}</span>
                                             </Link>
@@ -270,7 +285,9 @@ const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="#pricing">
+                                    <Link
+                                        href="#pricing"
+                                        onClick={(e) => handleAnchorClick(e, '#pricing')}>
                                         <span>View Pricing</span>
                                     </Link>
                                 </Button>

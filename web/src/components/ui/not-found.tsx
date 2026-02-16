@@ -3,30 +3,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 type IconProps = React.SVGProps<SVGSVGElement>;
-
-const MOBILE_BREAKPOINT = 768;
-
-export function useIsMobile() {
-    const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
-        undefined
-    );
-
-    React.useEffect(() => {
-        const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-        const onChange = () => {
-            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-        };
-        mql.addEventListener("change", onChange);
-        setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-        return () => mql.removeEventListener("change", onChange);
-    }, []);
-
-    return !!isMobile;
-}
 
 const ICONS = {
     notFound: (props?: IconProps) => (
@@ -46,8 +25,6 @@ const ICONS = {
     ),
 };
 
-import { useRouter } from "next/navigation";
-
 const Logo = () => (
     <Link href="/" className="absolute z-50 top-8 left-8 flex items-center gap-2 hover:opacity-80 transition-opacity">
         <Image
@@ -62,7 +39,6 @@ const Logo = () => (
 )
 
 export function NotFound() {
-    const isMobile = useIsMobile()
     const router = useRouter()
 
     return (
@@ -78,15 +54,15 @@ export function NotFound() {
                         We lost this page
                     </h1>
                     <p className="text-center text-lg md:text-xl">
-                        The page you are looking for doesn't exist or has been moved.{" "}
+                        The page you are looking for doesn&apos;t exist or has been moved.{" "}
                     </p>
                 </div>
 
-                <div className="flex gap-3 flex-col md:flex-row w-full items-center justify-center ">
+                <div className="flex gap-3 flex-col md:flex-row w-full items-center justify-center">
                     <Button
                         onClick={() => router.back()}
-                        className="w-full md:w-fit bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/30 dark:text-blue-400 dark:hover:bg-blue-950/50 dark:border-blue-800"
-                        size={isMobile ? "default" : "lg"}
+                        className="w-full md:w-fit"
+                        size="lg"
                         variant="outline"
                     >
                         Go Back
