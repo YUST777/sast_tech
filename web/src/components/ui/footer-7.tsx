@@ -66,11 +66,11 @@ export const Footer7 = () => {
                             <Image
                                 src="/apple-touch-icon.png"
                                 alt="Sast Logo"
-                                width={32}
-                                height={32}
-                                className="size-8"
+                                width={28}
+                                height={28}
+                                className="size-7"
                             />
-                            <span className="text-2xl font-bold tracking-tight">Sast</span>
+                            <span className="text-xl font-bold tracking-tight">Sast</span>
                         </Link>
                         <p className="max-w-[70%] text-sm text-muted-foreground">
                             Securing your digital frontier with advanced penetration testing and comprehensive vulnerability assessments.

@@ -31,11 +31,11 @@ export default function CompanyPage() {
                 <Image
                     src="/apple-touch-icon.png"
                     alt="Sast Logo"
-                    width={32}
-                    height={32}
-                    className="size-8"
+                    width={28}
+                    height={28}
+                    className="size-7"
                 />
-                <span className="text-xl font-bold tracking-tight">Sast</span>
+                <span className="text-lg font-bold tracking-tight">Sast</span>
             </Link>
 
             {/* Hero Section */}
