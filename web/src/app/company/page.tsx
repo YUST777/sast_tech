@@ -1,16 +1,27 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowRight } from "lucide-react"
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaTiktok } from "react-icons/fa"
+import { ArrowLeft, ArrowRight, Facebook, Instagram, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+const TikTokIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.84a4.84 4.84 0 01-1-.15z" />
+    </svg>
+)
+
+const XIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+)
 
 export default function CompanyPage() {
     const socialLinks = [
-        { icon: <FaTiktok className="size-6" />, href: "https://www.tiktok.com/@sast_tech", label: "TikTok", name: "TikTok" },
-        { icon: <FaFacebook className="size-6" />, href: "https://www.facebook.com/profile.php?id=61588200480116", label: "Facebook", name: "Facebook" },
-        { icon: <FaTwitter className="size-6" />, href: "https://x.com/sast_tech", label: "X (Twitter)", name: "X (Twitter)" },
-        { icon: <FaInstagram className="size-6" />, href: "https://www.instagram.com/sast.tech/", label: "Instagram", name: "Instagram" },
-        { icon: <FaLinkedin className="size-6" />, href: "https://linkedin.com/company/sast-tech", label: "LinkedIn", name: "LinkedIn" },
+        { icon: <TikTokIcon className="size-6" />, href: "https://www.tiktok.com/@sast_tech", label: "TikTok", name: "TikTok" },
+        { icon: <Facebook className="size-6" />, href: "https://www.facebook.com/profile.php?id=61588200480116", label: "Facebook", name: "Facebook" },
+        { icon: <XIcon className="size-6" />, href: "https://x.com/sast_tech", label: "X (Twitter)", name: "X (Twitter)" },
+        { icon: <Instagram className="size-6" />, href: "https://www.instagram.com/sast.tech/", label: "Instagram", name: "Instagram" },
+        { icon: <Linkedin className="size-6" />, href: "https://linkedin.com/company/sast-tech", label: "LinkedIn", name: "LinkedIn" },
     ]
 
     return (

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { ArrowRight, ChevronRight, Menu, Star, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
+import { AppShowcase } from '@/components/ui/app-showcase'
 import BentoGrid from '@/components/ui/bento'
 import { cn } from '@/lib/utils'
 
@@ -131,20 +132,7 @@ export function HeroSection() {
                                     className="bg-gradient-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
                                 />
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                                    <Image
-                                        className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                                        src="https://tailark.com/_next/image?url=%2Fmail2.png&w=3840&q=75"
-                                        alt="app screen"
-                                        width={2700}
-                                        height={1440}
-                                    />
-                                    <Image
-                                        className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                                        src="https://tailark.com/_next/image?url=%2Fmail2-light.png&w=3840&q=75"
-                                        alt="app screen"
-                                        width={2700}
-                                        height={1440}
-                                    />
+                                    <AppShowcase />
                                 </div>
                             </div>
                         </AnimatedGroup>
@@ -156,85 +144,35 @@ export function HeroSection() {
                             <Link
                                 href="/"
                                 className="block text-sm duration-150 hover:opacity-75">
-                                <span> Trusted by Teams at</span>
+                                <span>Powered by</span>
 
                                 <ChevronRight className="ml-1 inline-block size-3" />
                             </Link>
                         </div>
                         <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-5 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                    alt="Nvidia Logo"
-                                    height={20}
-                                    width={80}
-                                />
+                            <div className="flex items-center justify-center">
+                                <GDGDeltaLogo className="h-6 w-auto" />
                             </div>
-
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-4 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/column.svg"
-                                    alt="Column Logo"
-                                    height={16}
-                                    width={64}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="Nuclei" icon="nuclei" />
                             </div>
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-4 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/github.svg"
-                                    alt="GitHub Logo"
-                                    height={16}
-                                    width={64}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="OWASP ZAP" icon="zap" />
                             </div>
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-5 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nike.svg"
-                                    alt="Nike Logo"
-                                    height={20}
-                                    width={80}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="Playwright" icon="playwright" />
                             </div>
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-5 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                    alt="Lemon Squeezy Logo"
-                                    height={20}
-                                    width={80}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="Python" icon="python" />
                             </div>
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-4 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                    alt="Laravel Logo"
-                                    height={16}
-                                    width={64}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="FastAPI" icon="fastapi" />
                             </div>
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-7 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                    alt="Lilly Logo"
-                                    height={28}
-                                    width={80}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="Anthropic" icon="anthropic" />
                             </div>
-
-                            <div className="flex">
-                                <Image
-                                    className="mx-auto h-6 w-auto dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/openai.svg"
-                                    alt="OpenAI Logo"
-                                    height={24}
-                                    width={80}
-                                />
+                            <div className="flex items-center justify-center">
+                                <ToolLogo name="Next.js" icon="nextjs" />
                             </div>
                         </div>
                     </div>
@@ -400,3 +338,74 @@ const Logo = ({ className }: { className?: string }) => {
         </div>
     )
 }
+
+const GDGDeltaLogo = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+        <rect x="110" y="55" width="90" height="30" rx="15" fill="#EA4335" transform="rotate(-35 155 70)" />
+        <rect x="110" y="95" width="90" height="30" rx="15" fill="#4285F4" transform="rotate(35 155 110)" />
+        <rect x="260" y="55" width="90" height="30" rx="15" fill="#34A853" transform="rotate(35 305 70)" />
+        <rect x="260" y="95" width="90" height="30" rx="15" fill="#FBBC05" transform="rotate(-35 305 110)" />
+        <text x="50%" y="200" fontFamily="Arial, Helvetica, sans-serif" fontSize="36" fill="currentColor" textAnchor="middle">GDG Delta</text>
+    </svg>
+)
+
+const toolIcons: Record<string, React.ReactNode> = {
+    nuclei: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="4" />
+            <line x1="12" y1="2" x2="12" y2="8" />
+            <line x1="12" y1="16" x2="12" y2="22" />
+            <line x1="2" y1="12" x2="8" y2="12" />
+            <line x1="16" y1="12" x2="22" y2="12" />
+        </svg>
+    ),
+    zap: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    ),
+    playwright: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <rect x="3" y="4" width="18" height="14" rx="2" />
+            <path d="M8 21h8" />
+            <path d="M12 18v3" />
+            <circle cx="9" cy="10" r="1" fill="currentColor" />
+            <circle cx="15" cy="10" r="1" fill="currentColor" />
+        </svg>
+    ),
+    python: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <path d="M12 2C6.5 2 6 4 6 5.5V8h6v1H5.5C3.5 9 2 10.5 2 13s1.5 4 3.5 4H8v-2.5C8 12.5 9.5 11 11.5 11h5c1.5 0 2.5-1 2.5-2.5v-5C19 2 17 2 12 2z" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="9" cy="5.5" r="0.8" fill="currentColor" />
+            <path d="M12 22c5.5 0 6-2 6-3.5V16h-6v-1h6.5c2 0 3.5-1.5 3.5-4s-1.5-4-3.5-4H16v2.5c0 2-1.5 3.5-3.5 3.5h-5C6 13 5 14 5 15.5v5C5 22 7 22 12 22z" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="15" cy="18.5" r="0.8" fill="currentColor" />
+        </svg>
+    ),
+    fastapi: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    ),
+    anthropic: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <path d="M12 3L2 21h20L12 3z" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M12 10v5" strokeLinecap="round" />
+            <circle cx="12" cy="17.5" r="0.5" fill="currentColor" />
+        </svg>
+    ),
+    nextjs: (
+        <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <circle cx="12" cy="12" r="10" />
+            <path d="M7 16V8l10 12" strokeLinecap="round" strokeLinejoin="round" />
+            <line x1="17" y1="8" x2="17" y2="12" strokeLinecap="round" />
+        </svg>
+    ),
+}
+
+const ToolLogo = ({ name, icon }: { name: string; icon: string }) => (
+    <div className="flex items-center gap-2 text-white/60">
+        {toolIcons[icon]}
+        <span className="text-sm font-medium tracking-tight whitespace-nowrap">{name}</span>
+    </div>
+)
