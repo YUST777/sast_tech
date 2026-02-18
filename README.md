@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://sast.tech">
-    <img src="web/public/1.jpg" alt="sast Banner" width="100%">
+    <img src="public/1.jpg" alt="sast Banner" width="100%">
   </a>
 </p>
 
