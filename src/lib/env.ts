@@ -1,6 +1,9 @@
 /**
- * Environment variable validation.
- * Import this module early to fail fast if required vars are missing.
+ * Environment variable helpers.
+ *
+ * `env` is a lazy proxy — values are read from `process.env` on first access
+ * rather than at import time, so the build won't crash if vars are missing
+ * during static page generation.
  */
 
 function requireEnv(name: string): string {
@@ -14,8 +17,16 @@ function requireEnv(name: string): string {
   return value
 }
 
-export const env = {
-  NEXT_PUBLIC_SUPABASE_URL: requireEnv('NEXT_PUBLIC_SUPABASE_URL'),
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: requireEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
-  SUPABASE_SERVICE_ROLE_KEY: requireEnv('SUPABASE_SERVICE_ROLE_KEY'),
-} as const
+type EnvKeys =
+  | 'NEXT_PUBLIC_SUPABASE_URL'
+  | 'NEXT_PUBLIC_SUPABASE_ANON_KEY'
+  | 'SUPABASE_SERVICE_ROLE_KEY'
+
+export const env: Readonly<Record<EnvKeys, string>> = new Proxy(
+  {} as Record<EnvKeys, string>,
+  {
+    get(_target, prop: string) {
+      return requireEnv(prop)
+    },
+  },
+)
