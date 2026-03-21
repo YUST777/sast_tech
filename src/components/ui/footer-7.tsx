@@ -72,7 +72,7 @@ export const Footer7 = () => {
                             />
                             <span className="text-xl font-bold tracking-tight">Sast</span>
                         </Link>
-                        <p className="max-w-[70%] text-sm text-muted-foreground">
+                        <p className="max-w-full sm:max-w-[70%] text-sm text-muted-foreground">
                             Securing your digital frontier with advanced penetration testing and comprehensive vulnerability assessments.
                         </p>
                         <ul className="flex items-center space-x-6 text-muted-foreground">

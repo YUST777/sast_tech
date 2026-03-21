@@ -67,11 +67,11 @@ export function HeroSection() {
                                     </Link>
 
                                     <h1
-                                        className="mt-8 max-w-4xl mx-auto text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]">
+                                        className="mt-8 max-w-4xl mx-auto text-4xl sm:text-5xl md:text-7xl lg:mt-16 xl:text-[5.25rem]">
                                         Coded fast<br />Secured faster
                                     </h1>
                                     <p
-                                        className="mx-auto mt-8 max-w-2xl text-balance text-lg">
+                                        className="mx-auto mt-6 sm:mt-8 max-w-2xl text-balance text-base sm:text-lg">
                                         Code is generated instantly. Security is stuck in manual.
                                     </p>
                                 </AnimatedGroup>
@@ -115,7 +115,7 @@ export function HeroSection() {
                             </div>
                         </div>
 
-                        <div className="relative -mr-56 mt-8 px-2 sm:mr-0 sm:mt-12 md:mt-20">
+                        <div className="relative mt-8 px-2 sm:mt-12 md:mt-20">
                             <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                                 <AppShowcase />
                             </div>
@@ -137,7 +137,7 @@ export function HeroSection() {
                                 <ChevronRight className="ml-1 inline-block size-3" />
                             </Link>
                         </div>
-                        <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
+                        <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-6 transition-all duration-500 group-hover:opacity-50 sm:grid-cols-4 sm:gap-x-16 sm:gap-y-14">
                             <div className="flex items-center justify-center">
                                 <GDGDeltaLogo className="h-6 w-auto" />
                             </div>

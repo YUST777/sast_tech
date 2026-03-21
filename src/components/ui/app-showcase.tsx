@@ -497,7 +497,7 @@ function TerminalPanel({ lines, visibleCount }: {
     visibleCount: number
 }) {
     return (
-        <div className="p-4 flex-1 min-h-0 font-mono text-[13px] leading-7 overflow-y-auto">
+        <div className="p-3 sm:p-4 flex-1 min-h-0 font-mono text-[11px] sm:text-[13px] leading-6 sm:leading-7 overflow-y-auto">
             {lines.slice(0, visibleCount).map((line, i) => (
                 <div
                     key={`${line.prefix}-${i}`}
@@ -619,7 +619,7 @@ export function AppShowcase() {
     const showFindingDetail = !!activeFinding
 
     return (
-        <div className="bg-[#0c0c0c] aspect-[3/4] sm:aspect-[15/8] w-full rounded-2xl overflow-hidden flex flex-col select-none">
+        <div className="bg-[#0c0c0c] aspect-[3/4] sm:aspect-[15/8] w-full rounded-2xl overflow-hidden flex flex-col select-none text-[11px] sm:text-xs">
             {/* Title bar */}
             <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3 shrink-0">
                 <div className="flex items-center gap-3">
@@ -648,7 +648,7 @@ export function AppShowcase() {
                 {/* Left panel */}
                 <div className="flex-1 flex flex-col border-r border-white/[0.06] min-w-0">
                     {/* Pipeline phases — clickable */}
-                    <div className="border-b border-white/[0.06] px-5 py-4 shrink-0">
+                    <div className="border-b border-white/[0.06] px-3 sm:px-5 py-3 sm:py-4 shrink-0">
                         <div className="flex items-center gap-1.5">
                             {phaseDefs.map((phase, i) => {
                                 const status = getPhaseStatus(phase.id)
@@ -657,7 +657,7 @@ export function AppShowcase() {
                                         <button
                                             onClick={() => handlePhaseClick(phase.id)}
                                             className={cn(
-                                                'flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-mono w-full justify-center transition-all duration-200 cursor-pointer',
+                                                'flex items-center gap-1.5 sm:gap-2 rounded-lg px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-mono w-full justify-center transition-all duration-200 cursor-pointer',
                                                 status === 'complete' && 'bg-white/[0.05] text-white/50 hover:bg-white/[0.08]',
                                                 status === 'active' && 'bg-white/[0.08] text-white border border-white/[0.15] hover:bg-white/[0.12]',
                                                 status === 'pending' && 'text-white/20 hover:text-white/35 hover:bg-white/[0.03]',
@@ -713,10 +713,10 @@ export function AppShowcase() {
                                         key={agent.name}
                                         onClick={() => handleAgentClick(agent as Agent)}
                                         className={cn(
-                                            'flex items-center justify-between px-5 py-3 w-full text-left transition-colors cursor-pointer',
+                                            'flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3 w-full text-left transition-colors cursor-pointer',
                                             selectedAgent === agent.name ? 'bg-white/[0.05]' : 'hover:bg-white/[0.02]',
                                         )}>
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-3 min-w-0">
                                             <span className={cn(
                                                 'size-2 rounded-full shrink-0',
                                                 agent.status === 'done' && 'bg-emerald-500',
@@ -724,13 +724,13 @@ export function AppShowcase() {
                                                 agent.status === 'queued' && 'bg-white/20',
                                             )} />
                                             <span className={cn(
-                                                'text-[13px] font-mono transition-colors',
+                                                'text-[12px] sm:text-[13px] font-mono transition-colors truncate',
                                                 selectedAgent === agent.name ? 'text-white/80' : 'text-white/60',
                                             )}>{agent.name}</span>
                                         </div>
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-2 shrink-0">
                                             {agent.findings > 0 && (
-                                                <span className="text-xs font-mono text-white/25">{agent.findings} findings</span>
+                                                <span className="text-xs font-mono text-white/25 hidden sm:inline">{agent.findings} findings</span>
                                             )}
                                             <span className={cn(
                                                 'text-xs font-mono min-w-[52px] text-right',
@@ -751,13 +751,13 @@ export function AppShowcase() {
                                         key={finding.id}
                                         onClick={() => handleFindingClick(finding)}
                                         className={cn(
-                                            'flex items-center justify-between px-5 py-3 w-full text-left transition-colors cursor-pointer',
+                                            'flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3 w-full text-left transition-colors cursor-pointer',
                                             selectedFinding === finding.id ? 'bg-white/[0.05]' : 'hover:bg-white/[0.02]',
                                         )}>
                                         <div className="flex items-center gap-3 min-w-0">
                                             <span className="text-xs font-mono text-white/20 shrink-0">{finding.id}</span>
                                             <span className={cn(
-                                                'text-[13px] font-mono truncate transition-colors',
+                                                'text-[12px] sm:text-[13px] font-mono truncate transition-colors',
                                                 selectedFinding === finding.id ? 'text-white/80' : 'text-white/60',
                                             )}>{finding.title}</span>
                                         </div>
@@ -821,19 +821,19 @@ export function AppShowcase() {
             </div>
 
             {/* Bottom bar — progress */}
-            <div className="border-t border-white/[0.06] px-5 py-3 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-4">
-                    <div className="w-36 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+            <div className="border-t border-white/[0.06] px-3 sm:px-5 py-2 sm:py-3 flex items-center justify-between shrink-0 gap-2">
+                <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                    <div className="w-20 sm:w-36 h-1.5 rounded-full bg-white/[0.06] overflow-hidden shrink-0">
                         <div
                             className="h-full rounded-full bg-gradient-to-r from-white/20 to-white/40 transition-all duration-500"
                             style={{ width: `${currentPhase.progress}%` }}
                         />
                     </div>
-                    <span className="text-xs font-mono text-white/25">
+                    <span className="text-xs font-mono text-white/25 truncate">
                         {currentPhase.progress}% &mdash; Phase {activePhase} of 4
                     </span>
                 </div>
-                <div className="text-xs font-mono text-white/15">
+                <div className="text-xs font-mono text-white/15 hidden sm:block">
                     elapsed: {currentPhase.elapsed}
                 </div>
             </div>

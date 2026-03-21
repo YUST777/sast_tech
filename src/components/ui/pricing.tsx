@@ -22,7 +22,7 @@ export default function Pricing() {
             </svg>
             <div className="mx-auto max-w-5xl px-6">
                 <div className="mx-auto max-w-2xl space-y-6 text-center">
-                    <h2 className="text-center text-4xl font-semibold lg:text-5xl">Autonomous AI Pentesting</h2>
+                    <h2 className="text-center text-3xl font-semibold lg:text-5xl">Autonomous AI Pentesting</h2>
                     <p>Scale your security testing with AI-driven vulnerability detection and automated exploitation validation.</p>
                 </div>
 

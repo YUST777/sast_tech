@@ -6,10 +6,10 @@ import { motion } from "framer-motion"
 export default function BentoGrid() {
   return (
     <div className="container mx-auto flex flex-col px-4 sm:p-10">
-      <h1 className="font-geistMono tracking-tight text-3xl md:text-5xl">
+      <h1 className="font-geistMono tracking-tight text-2xl sm:text-3xl md:text-5xl">
         Security
       </h1>
-      <p className="max-w-3xl text-2xl/8 font-medium tracking-tight mt-2 bg-gradient-to-br from-white to-white/40 bg-clip-text text-transparent">
+      <p className="max-w-3xl text-lg/7 sm:text-2xl/8 font-medium tracking-tight mt-2 bg-gradient-to-br from-white to-white/40 bg-clip-text text-transparent">
         Autonomous protection that never sleeps.
       </p>
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
@@ -87,12 +87,12 @@ export function BentoCard({
         "bg-black dark:bg-transparent transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f01f_inset] shadow-sm ring-1 ring-white/10",
       )}
     >
-      <div className="relative h-[29rem] shrink-0">
+      <div className="relative h-48 sm:h-[29rem] shrink-0">
         {graphic}
       </div>
-      <div className="relative p-10 z-20 isolate mt-[-110px] h-[14rem] backdrop-blur-xl text-white">
+      <div className="relative p-5 sm:p-10 z-20 isolate mt-0 sm:mt-[-110px] h-auto sm:h-[14rem] backdrop-blur-xl text-white">
         <h1>{eyebrow}</h1>
-        <p className="mt-1 text-2xl/8 font-medium tracking-tight text-gray-100">
+        <p className="mt-1 text-lg/6 sm:text-2xl/8 font-medium tracking-tight text-gray-100">
           {title}
         </p>
         <p className="mt-2 max-w-[600px] text-sm/6 text-gray-300">
