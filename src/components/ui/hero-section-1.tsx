@@ -126,45 +126,7 @@ export function HeroSection() {
                         </div>
                     </div>
                 </section>
-                <section className="bg-background pb-16 pt-16 md:pb-32">
-                    <div className="group relative m-auto max-w-5xl px-6">
-                        <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
-                            <Link
-                                href="/"
-                                className="block text-sm duration-150 hover:opacity-75">
-                                <span>Powered by</span>
 
-                                <ChevronRight className="ml-1 inline-block size-3" />
-                            </Link>
-                        </div>
-                        <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-6 transition-all duration-500 group-hover:opacity-50 sm:grid-cols-4 sm:gap-x-16 sm:gap-y-14">
-                            <div className="flex items-center justify-center">
-                                <GDGDeltaLogo className="h-6 w-auto" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="Nuclei" icon="nuclei" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="OWASP ZAP" icon="zap" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="Playwright" icon="playwright" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="Python" icon="python" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="FastAPI" icon="fastapi" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="Anthropic" icon="anthropic" />
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <ToolLogo name="Next.js" icon="nextjs" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 <section id="features" className="bg-background pb-16 pt-16 md:pb-32">
                     <BentoGrid />
                 </section>
