@@ -18,6 +18,18 @@ import {
   Rocket,
 } from "lucide-react";
 
+const NUM_BARS = 15;
+
+function calculateHeight(index: number, total: number): number {
+  const position = index / (total - 1);
+  const center = 0.5;
+  const distanceFromCenter = Math.abs(position - center);
+  const heightPercentage = Math.pow(distanceFromCenter * 2, 1.2);
+  const minHeight = 30;
+  const maxHeight = 100;
+  return minHeight + (maxHeight - minHeight) * heightPercentage;
+}
+
 interface AutoResizeProps {
   minHeight: number;
   maxHeight?: number;
@@ -63,15 +75,39 @@ export default function RuixenMoonChat() {
 
   return (
     <div
-      className="relative w-full h-screen bg-cover bg-center flex flex-col items-center"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80')",
-        backgroundAttachment: "fixed",
-      }}
+      className="relative w-full h-screen flex flex-col items-center overflow-hidden"
     >
+      {/* Waitlist-style background */}
+      <div className="absolute inset-0 bg-gray-950" />
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div
+          className="flex h-full w-full"
+          style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
+        >
+          {Array.from({ length: NUM_BARS }).map((_, index) => {
+            const height = calculateHeight(index, NUM_BARS);
+            return (
+              <div
+                key={index}
+                className="animate-pulseBar"
+                style={{
+                  flex: `1 0 calc(100% / ${NUM_BARS})`,
+                  maxWidth: `calc(100% / ${NUM_BARS})`,
+                  height: "100%",
+                  background:
+                    "linear-gradient(to top, rgba(255, 255, 255, 0.15), transparent)",
+                  transform: `scaleY(${height / 100})`,
+                  transformOrigin: "bottom",
+                  transition: "transform 0.5s ease-in-out",
+                  animationDelay: `${index * 0.1}s`,
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
       {/* Centered AI Title */}
-      <div className="flex-1 w-full flex flex-col items-center justify-center">
+      <div className="relative z-10 flex-1 w-full flex flex-col items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-semibold text-white drop-shadow-sm">
             sast AI
@@ -83,7 +119,7 @@ export default function RuixenMoonChat() {
       </div>
 
       {/* Input Box Section */}
-      <div className="w-full max-w-3xl px-4 mb-[20vh]">
+      <div className="relative z-10 w-full max-w-3xl px-4 mb-[20vh]">
         <div className="relative bg-black/60 backdrop-blur-md rounded-xl border border-neutral-700">
           <Textarea
             ref={textareaRef}
