@@ -107,8 +107,8 @@ export function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link href="#pricing">
-                                            <span className="text-nowrap">View Pricing</span>
+                                        <Link href="/register">
+                                            <span className="text-nowrap">Start Free</span>
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>
@@ -220,7 +220,6 @@ const HeroHeader = () => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:items-center sm:gap-3 sm:space-y-0 md:w-fit">
-                                <GitHubStars />
                                 <Button
                                     asChild
                                     variant="outline"
@@ -234,10 +233,8 @@ const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link
-                                        href="#pricing"
-                                        onClick={(e) => handleAnchorClick(e, '#pricing')}>
-                                        <span>View Pricing</span>
+                                    <Link href="/register">
+                                        <span>Start Free</span>
                                     </Link>
                                 </Button>
                                 <Button
@@ -258,37 +255,6 @@ const HeroHeader = () => {
     )
 }
 
-const GitHubStars = () => {
-    const [stars, setStars] = React.useState<number | null>(null)
-
-    React.useEffect(() => {
-        fetch('https://api.github.com/repos/YUST777/sast_tech')
-            .then((res) => res.json())
-            .then((data) => {
-                if (typeof data.stargazers_count === 'number') {
-                    setStars(data.stargazers_count)
-                }
-            })
-            .catch(() => { })
-    }, [])
-
-    return (
-        <Link
-            href="https://github.com/YUST777/sast_tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white">
-            <Star className="size-3.5" />
-            <span>Star</span>
-            {stars !== null && (
-                <>
-                    <span className="h-3.5 w-px bg-white/20" />
-                    <span className="text-xs font-medium">{stars}</span>
-                </>
-            )}
-        </Link>
-    )
-}
 
 const Logo = ({ className }: { className?: string }) => {
     return (
