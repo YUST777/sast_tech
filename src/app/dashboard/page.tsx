@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Download, Sparkles } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
@@ -20,10 +20,7 @@ export default async function DashboardPage() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-50" />
       
       <div className="relative z-10 w-full max-w-2xl mx-auto px-6 text-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white/5 border border-white/10 mb-8 shadow-2xl shadow-blue-500/20">
-          <Sparkles className="h-10 w-10 text-[#814eb6]" />
-        </div>
-        
+
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-sm">
           Congratulations! 🎉
         </h1>
