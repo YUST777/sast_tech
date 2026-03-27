@@ -241,8 +241,8 @@ const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link href="/download">
-                                        <span>Get Started</span>
+                                    <Link href="/register">
+                                        <span>Start Free</span>
                                     </Link>
                                 </Button>
                             </div>
