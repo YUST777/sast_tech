@@ -31,7 +31,7 @@ const platforms = [
         ),
         command: "winget install sast-tech.sast",
         disabled: false,
-        href: "http://91.134.255.57:8080/sast-setup.exe",
+        href: "https://download.sast.tech/sast-setup.exe",
     },
 ]
 
