@@ -84,7 +84,7 @@ export default function DownloadPage() {
 
                 {/* Platform cards */}
                 <section className="pb-16 md:pb-24">
-                    <div className="mx-auto grid max-w-5xl gap-6 px-6 md:grid-cols-3">
+                    <div className="mx-auto max-w-xl px-6">
                         {platforms.map((platform) => (
                             <div
                                 key={platform.name}
@@ -99,7 +99,7 @@ export default function DownloadPage() {
                                 <div className="mt-6 flex-1">
                                     <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-white/70">
                                         <Terminal className="size-4 shrink-0 text-white/40" />
-                                        <code className="truncate">{platform.command}</code>
+                                        <code className="whitespace-pre overflow-x-auto scrollbar-hide">{platform.command}</code>
                                     </div>
                                 </div>
 
