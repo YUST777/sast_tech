@@ -43,18 +43,6 @@ const platforms = [
         command: "curl -fsSL https://get.sast.tech | sh",
         disabled: true,
     },
-    {
-        name: "Windows",
-        arch: "x86_64",
-        icon: (
-            <svg className="size-8" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
-            </svg>
-        ),
-        command: "winget install sast-tech.sast",
-        disabled: false,
-        href: "http://91.134.255.57:8080/sast-setup.exe",
-    },
 ]
 
 export default function DownloadPage() {
@@ -96,10 +84,10 @@ export default function DownloadPage() {
                         </p>
                         <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-muted-foreground">
                             <span className="relative flex size-2">
-                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-amber-400 opacity-75" />
+                                <span className="relative inline-flex size-2 rounded-full bg-amber-500" />
                             </span>
-                            v0.0.72 is now live for Windows
+                            Coming soon -- Join the waitlist for early access
                         </div>
                     </div>
                 </section>
