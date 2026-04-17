@@ -120,8 +120,8 @@ export default function DownloadPage() {
                                         className="w-full"
                                         disabled={platform.disabled}
                                     >
-                                        <Link href={platform.href || "/waitlist"}>
-                                            {platform.disabled ? "Join Waitlist" : "Download Now"}
+                                        <Link href="/waitlist">
+                                            Join Waitlist
                                         </Link>
                                     </Button>
                                 </div>
