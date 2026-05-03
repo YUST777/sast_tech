@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Footer7 } from "@/components/ui/footer-7"
 import type { Metadata } from "next"
 
-/** Public URL served from this project's VPS nginx (see icpchue nginx). */
-const WINDOWS_EXE_URL =
-    process.env.NEXT_PUBLIC_WINDOWS_INSTALLER_URL ??
-    "https://icpchue.com/sast-ai-windows-setup.exe"
+import { WINDOWS_INSTALLER_URL } from "@/lib/windows-installer-url"
+
+const WINDOWS_EXE_URL = WINDOWS_INSTALLER_URL
 export const metadata: Metadata = {
     title: "Download",
     description:

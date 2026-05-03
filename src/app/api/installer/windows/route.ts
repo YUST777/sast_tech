@@ -2,14 +2,13 @@ import { createReadStream, statSync } from 'fs'
 import { Readable } from 'node:stream'
 import { NextResponse } from 'next/server'
 
+import { WINDOWS_INSTALLER_URL } from '@/lib/windows-installer-url'
+
 export const runtime = 'nodejs'
 
 /** Default on self-hosted VM (e.g. Ubuntu on EC2) when `SAST_WINDOWS_INSTALLER_PATH` is unset */
 const DEFAULT_INSTALLER_PATH =
   '/home/ubuntu/sast/SAST.ai-Setup-0.0.72.exe'
-
-const PUBLIC_INSTALLER_FALLBACK =
-  'https://icpchue.com/sast-ai-windows-setup.exe'
 
 /**
  * - `SAST_WINDOWS_INSTALLER_URL` — optional HTTPS URL; redirects (useful on serverless/Vercel).
@@ -38,6 +37,6 @@ export async function GET() {
       },
     })
   } catch {
-    return NextResponse.redirect(PUBLIC_INSTALLER_FALLBACK, 307)
+    return NextResponse.redirect(WINDOWS_INSTALLER_URL, 307)
   }
 }

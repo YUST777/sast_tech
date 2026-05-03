@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { WINDOWS_INSTALLER_URL } from "./src/lib/windows-installer-url";
+
 const securityHeaders = [
   {
     key: "X-DNS-Prefetch-Control",
@@ -26,10 +28,6 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=()",
   },
 ];
-
-/** Works through Cloudflare; download.sast.tech must point here or CF returns nginx 403/404. */
-const WINDOWS_INSTALLER_PUBLIC_URL =
-  "https://icpchue.com/sast-ai-windows-setup.exe";
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -62,7 +60,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/installer.exe",
-        destination: WINDOWS_INSTALLER_PUBLIC_URL,
+        destination: WINDOWS_INSTALLER_URL,
         permanent: false,
       },
     ];
