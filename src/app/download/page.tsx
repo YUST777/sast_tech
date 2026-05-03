@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button"
 import { Footer7 } from "@/components/ui/footer-7"
 import type { Metadata } from "next"
 
+/** Direct VPS (Cloudflare DNS-only avoids edge cache/origin mismatches). */
+const WINDOWS_EXE_URL =
+    process.env.NEXT_PUBLIC_WINDOWS_INSTALLER_URL ??
+    "https://download.sast.tech/installer.exe"
 export const metadata: Metadata = {
     title: "Download",
     description:
@@ -31,7 +35,7 @@ const platforms = [
         ),
         command: "winget install sast-tech.sast",
         wingetAvailable: false,
-        installerHref: "/api/installer/windows",
+        installerHref: WINDOWS_EXE_URL,
     },
 ]
 
