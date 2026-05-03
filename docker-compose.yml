@@ -13,4 +13,9 @@ services:
       - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
       - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      # Windows .exe lives on THIS host — bind mount below (path inside container)
+      - SAST_WINDOWS_INSTALLER_PATH=/installer/SAST.ai-Setup-0.0.72.exe
+    volumes:
+      # Host path: installer on ubuntu / EC2 box (read-only). Change left side if you move the file.
+      - /home/ubuntu/sast:/installer:ro
     restart: unless-stopped
