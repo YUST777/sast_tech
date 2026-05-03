@@ -30,8 +30,8 @@ const platforms = [
             </svg>
         ),
         command: "winget install sast-tech.sast",
-        disabled: true,
-        href: "https://download.sast.tech/sast-setup.exe",
+        wingetAvailable: false,
+        installerHref: "/api/installer/windows",
     },
 ]
 
@@ -74,10 +74,10 @@ export default function DownloadPage() {
                         </p>
                         <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-muted-foreground">
                             <span className="relative flex size-2">
-                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-amber-400 opacity-75" />
-                                <span className="relative inline-flex size-2 rounded-full bg-amber-500" />
+                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
                             </span>
-                            Coming soon -- Join the waitlist for early access
+                            Windows installer available below
                         </div>
                     </div>
                 </section>
@@ -96,7 +96,15 @@ export default function DownloadPage() {
                                     {platform.arch}
                                 </p>
 
-                                <div className="mt-6 flex-1">
+                                <div
+                                    className={`mt-6 flex-1 ${!platform.wingetAvailable ? "opacity-50" : ""}`}
+                                    aria-hidden={!platform.wingetAvailable}
+                                >
+                                    <p className="mb-2 text-xs text-muted-foreground">
+                                        {platform.wingetAvailable
+                                            ? "Or install with winget"
+                                            : "Winget (coming soon)"}
+                                    </p>
                                     <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-white/70">
                                         <Terminal className="size-4 shrink-0 text-white/40" />
                                         <code className="whitespace-pre overflow-x-auto scrollbar-hide">{platform.command}</code>
@@ -104,14 +112,9 @@ export default function DownloadPage() {
                                 </div>
 
                                 <div className="mt-6">
-                                    <Button
-                                        asChild
-                                        variant="outline"
-                                        className="w-full"
-                                        disabled={platform.disabled}
-                                    >
-                                        <Link href="/waitlist">
-                                            {platform.disabled ? "Coming Soon" : "Download Now"}
+                                    <Button asChild className="w-full">
+                                        <Link href={platform.installerHref} prefetch={false}>
+                                            Download installer (.exe)
                                         </Link>
                                     </Button>
                                 </div>
