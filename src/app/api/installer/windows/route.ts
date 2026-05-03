@@ -8,6 +8,9 @@ export const runtime = 'nodejs'
 const DEFAULT_INSTALLER_PATH =
   '/home/ubuntu/sast/SAST.ai-Setup-0.0.72.exe'
 
+const PUBLIC_INSTALLER_FALLBACK =
+  'https://icpchue.com/sast-ai-windows-setup.exe'
+
 /**
  * - `SAST_WINDOWS_INSTALLER_URL` — optional HTTPS URL; redirects (useful on serverless/Vercel).
  * - Else streams from disk: `SAST_WINDOWS_INSTALLER_PATH` or the default ubuntu path below.
@@ -35,11 +38,6 @@ export async function GET() {
       },
     })
   } catch {
-    return NextResponse.json(
-      {
-        error: `Windows installer not found or not readable: ${filePath}`,
-      },
-      { status: 404 },
-    )
+    return NextResponse.redirect(PUBLIC_INSTALLER_FALLBACK, 307)
   }
 }

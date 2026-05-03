@@ -27,6 +27,10 @@ const securityHeaders = [
   },
 ];
 
+/** Works through Cloudflare; download.sast.tech must point here or CF returns nginx 403/404. */
+const WINDOWS_INSTALLER_PUBLIC_URL =
+  "https://icpchue.com/sast-ai-windows-setup.exe";
+
 const nextConfig: NextConfig = {
   output: "standalone",
   reactCompiler: true,
@@ -51,6 +55,15 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: securityHeaders,
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/installer.exe",
+        destination: WINDOWS_INSTALLER_PUBLIC_URL,
+        permanent: false,
       },
     ];
   },
