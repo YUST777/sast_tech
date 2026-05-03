@@ -88,7 +88,7 @@ export function HeroSection() {
                                         },
                                         ...transitionVariants,
                                     }}
-                                    className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
+                                    className="mt-12 flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-3">
                                     <div
                                         key={1}
                                         className="bg-foreground/10 rounded-[14px] border p-0.5">
