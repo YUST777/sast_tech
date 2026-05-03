@@ -4,13 +4,13 @@ import { NextResponse } from 'next/server'
 
 export const runtime = 'nodejs'
 
+/** Default on self-hosted VM (e.g. Ubuntu on EC2) when `SAST_WINDOWS_INSTALLER_PATH` is unset */
+const DEFAULT_INSTALLER_PATH =
+  '/home/ubuntu/sast/SAST.ai-Setup-0.0.72.exe'
+
 /**
- * Hosted installer (recommended for serverless — Vercel, etc.): public HTTPS URL that
- * returns the `.exe`. Set in prod (e.g. Supabase Storage, S3, R2, GitHub Releases asset).
- *
- * Self-hosted VM/Docker only: filesystem path readable by Node.
- *
- * Prefer URL over path — path is absent on most cloud deploys.
+ * - `SAST_WINDOWS_INSTALLER_URL` — optional HTTPS URL; redirects (useful on serverless/Vercel).
+ * - Else streams from disk: `SAST_WINDOWS_INSTALLER_PATH` or the default ubuntu path below.
  */
 export async function GET() {
   const remoteUrl = process.env.SAST_WINDOWS_INSTALLER_URL?.trim()
@@ -18,16 +18,8 @@ export async function GET() {
     return NextResponse.redirect(remoteUrl, 307)
   }
 
-  const filePath = process.env.SAST_WINDOWS_INSTALLER_PATH?.trim()
-  if (!filePath) {
-    return NextResponse.json(
-      {
-        error:
-          'Windows installer file is not available on this server. Set SAST_WINDOWS_INSTALLER_URL (HTTPS URL to the .exe in your dashboard host) or SAST_WINDOWS_INSTALLER_PATH on a VPS/dedicated host.',
-      },
-      { status: 503 },
-    )
-  }
+  const filePath =
+    process.env.SAST_WINDOWS_INSTALLER_PATH?.trim() ?? DEFAULT_INSTALLER_PATH
 
   try {
     const stat = statSync(filePath)
@@ -45,7 +37,7 @@ export async function GET() {
   } catch {
     return NextResponse.json(
       {
-        error: `Windows installer not found at SAST_WINDOWS_INSTALLER_PATH: ${filePath}`,
+        error: `Windows installer not found or not readable: ${filePath}`,
       },
       { status: 404 },
     )
