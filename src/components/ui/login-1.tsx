@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Eye, EyeOff, Github, Chrome } from 'lucide-react';
-import { login, signup } from '@/app/register/actions';
 import { createClient } from '@/utils/supabase/client';
 
 export default function LoginScreen() {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -25,6 +28,7 @@ export default function LoginScreen() {
   };
 
   const handleOAuth = async (provider: 'github' | 'google') => {
+    setFormError(null);
     const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider,
@@ -32,6 +36,44 @@ export default function LoginScreen() {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormError(null);
+    setPending(true);
+    const supabase = createClient();
+
+    if (isLogin) {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+      setPending(false);
+      if (error) {
+        setFormError(error.message);
+        return;
+      }
+      await router.refresh();
+      router.replace('/download');
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    setPending(false);
+    if (error) {
+      setFormError(error.message);
+      return;
+    }
+    setFormError(null);
+    setFormData({ email: '', password: '' });
+    alert('Check your email to confirm your account, then sign in.');
   };
 
   const togglePasswordVisibility = () => {
@@ -42,6 +84,7 @@ export default function LoginScreen() {
     setIsLogin(!isLogin);
     setFormData({ email: '', password: '' });
     setShowPassword(false);
+    setFormError(null);
   };
 
   return (
@@ -78,8 +121,14 @@ export default function LoginScreen() {
             </p>
           </div>
 
+          {formError ? (
+            <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-center text-sm text-red-400" role="alert">
+              {formError}
+            </p>
+          ) : null}
+
           {/* Form */}
-          <form action={isLogin ? login : signup} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-zinc-300">
                 Your email
@@ -93,6 +142,7 @@ export default function LoginScreen() {
                 className="bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus-visible:ring-zinc-700 h-11"
                 placeholder="Enter your email"
                 required
+                disabled={pending}
               />
             </div>
 
@@ -110,6 +160,7 @@ export default function LoginScreen() {
                   className="bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus-visible:ring-zinc-700 h-11 pr-11"
                   placeholder={isLogin ? "Enter your password" : "Create a secure password"}
                   required
+                  disabled={pending}
                 />
                 <button
                   type="button"
@@ -141,9 +192,10 @@ export default function LoginScreen() {
 
             <Button
               type="submit"
+              disabled={pending}
               className="w-full h-11 bg-white text-zinc-950 hover:bg-zinc-200 shadow-none font-medium text-[15px] mt-2"
             >
-              {isLogin ? 'Sign In' : 'Create a new account'}
+              {pending ? 'Please wait…' : isLogin ? 'Sign In' : 'Create a new account'}
             </Button>
 
             <div className="text-center pt-2">
@@ -175,6 +227,7 @@ export default function LoginScreen() {
             <Button
               variant="outline"
               type="button"
+              disabled={pending}
               onClick={() => handleOAuth('google')}
               className="h-11 bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
             >
@@ -184,6 +237,7 @@ export default function LoginScreen() {
             <Button
               variant="outline"
               type="button"
+              disabled={pending}
               onClick={() => handleOAuth('github')}
               className="h-11 bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
             >
