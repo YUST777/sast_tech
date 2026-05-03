@@ -1,21 +1,22 @@
+# Supabase vars: optional project `.env` (same folder) overrides placeholders for real auth.
+# Installer: host folder (default /home/ubuntu/sast) → /installer in container. Override: SAST_HOST_INSTALLER_DIR
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
-        - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-        - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-https://example.supabase.co}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.replace-with-your-anon-key}
+        SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-replace-with-service-role}
     ports:
-      - "3000:3000"
+      - "${WEB_PORT:-3000}:3000"
     environment:
-      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
-      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
-      # Windows .exe lives on THIS host — bind mount below (path inside container)
-      - SAST_WINDOWS_INSTALLER_PATH=/installer/SAST.ai-Setup-0.0.72.exe
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-https://example.supabase.co}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.replace-with-your-anon-key}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-replace-with-service-role}
+      SAST_WINDOWS_INSTALLER_PATH: /installer/SAST.ai-Setup-0.0.72.exe
+      HOSTNAME: 0.0.0.0
     volumes:
-      # Host path: installer on ubuntu / EC2 box (read-only). Change left side if you move the file.
-      - /home/ubuntu/sast:/installer:ro
+      - ${SAST_HOST_INSTALLER_DIR:-/home/ubuntu/sast}:/installer:ro
     restart: unless-stopped
